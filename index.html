@@ -1,791 +1,299 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Renew Estética Avançada — Blumenau/SC</title>
-<meta name="description" content="Clínica multidisciplinar em Blumenau/SC. Terapias, estética facial e emagrecimento com diagnóstico médico. Tratamentos seguros, naturais e sem afastá-la da sua rotina." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Renew Estética Avançada — Blumenau · Terapias, Estética Facial e Saúde</title>
+  <meta name="description" content="Clínica multidisciplinar em Blumenau. Terapias integrativas, estética facial avançada (otomodelação) e saúde & emagrecimento. Nota 5,0 no Google. Agende sua avaliação." />
 
-<!-- ============================================================
-     UTM CAPTURE — roda o quanto antes (CLAUDE §7).
-     Salva os utm_* da URL em sessionStorage sob "renew_utms".
-============================================================ -->
-<script>
-(function () {
-  try {
-    var p = new URLSearchParams(location.search);
-    var keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
-    var utms = {}, has = false;
-    keys.forEach(function (k) { var v = p.get(k); if (v) { utms[k] = v; has = true; } });
-    if (has) sessionStorage.setItem('renew_utms', JSON.stringify(utms));
-  } catch (e) {}
-})();
-</script>
+  <!-- Meta Pixel (HUB — 3 pixels: Gleice, Eliane, Tatiana) · só ID, sem token -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1781646389879045'); // Gleice
+    fbq('init', '1520833486405098'); // Eliane
+    fbq('init', '1007882098820770'); // Tatiana
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1781646389879045&ev=PageView&noscript=1" />
+    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1520833486405098&ev=PageView&noscript=1" />
+    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1007882098820770&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Meta Pixel -->
 
-<!-- Fonts: Fraunces (display) + Inter (corpo), display=swap -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts: Cormorant (display) + Inter (corpo) — CLAUDE §5 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<!-- ============================================================
-     Tailwind via CDN (FASE DE PROTÓTIPO).
-     ANTES DO DEPLOY: trocar por CSS compilado/minificado com o
-     Tailwind CLI para remover o runtime do CDN e o aviso de produção.
-============================================================ -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
+  <!-- Tailwind (CDN no protótipo; trocar por CSS minificado no deploy) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
         colors: {
-          ink: '#0E0C0A', 'ink-soft': '#1A1614',
-          gold: '#C8A14E', 'gold-bright': '#E4C97A',
-          champagne: '#EDE3D4', sand: '#F6F1E8',
-          'text-dark': '#2B2622', 'text-light': '#EFE9DF', muted: '#8A8178'
+          ink: '#0E0C0A', 'ink-soft': '#1A1614', gold: '#C8A14E', 'gold-bright': '#E4C97A',
+          champagne: '#EDE3D4', sand: '#F6F1E8', 'text-dark': '#2B2622', 'text-light': '#EFE9DF', muted: '#8A8178'
         },
-        fontFamily: {
-          display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
+        fontFamily: { display: ['Cormorant', 'serif'], sans: ['Inter', 'sans-serif'] }
+      } }
+    };
+  </script>
 
-<style>
-  :root{
-    --ink:#0E0C0A; --ink-soft:#1A1614; --gold:#C8A14E; --gold-bright:#E4C97A;
-    --champagne:#EDE3D4; --sand:#F6F1E8; --text-dark:#2B2622; --text-light:#EFE9DF; --muted:#8A8178;
-    --header-h:72px;
-  }
-  html{ scroll-behavior:smooth; }
-  body{ background:var(--ink); color:var(--text-light); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
-  /* offset de âncora p/ não ficar embaixo do header fixo */
-  section[id]{ scroll-margin-top:var(--header-h); }
-
-  /* foco de teclado sempre visível */
-  :focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:2px; }
-
-  .font-display{ font-family:'Fraunces',serif; font-optical-sizing:auto; }
-
-  /* ---- GRÃO / NOISE (2–3%) p/ seções escuras ---- */
-  .grain{ position:relative; }
-  .grain::after{
-    content:""; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:.035;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode:overlay;
-  }
-  .grain > *{ position:relative; z-index:1; }
-
-  /* ---- GRADIENTE DOURADO ANIMADO (só no hero) ---- */
-  .hero-glow{
-    position:absolute; inset:-20%; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(40% 50% at 25% 30%, rgba(200,161,78,.28), transparent 60%),
-      radial-gradient(45% 55% at 80% 60%, rgba(228,201,122,.18), transparent 65%);
-    filter:blur(8px);
-    animation:heroDrift 22s ease-in-out infinite alternate;
-  }
-  @keyframes heroDrift{
-    0%  { transform:translate3d(-3%,-2%,0) scale(1);   }
-    50% { transform:translate3d(4%,3%,0)  scale(1.08); }
-    100%{ transform:translate3d(-2%,4%,0) scale(1.04); }
-  }
-
-  /* ---- ELEMENTO ASSINATURA: o traço fluido dourado ---- */
-  .renew-flourish path{ stroke-dasharray:1; stroke-dashoffset:0; }
-  .renew-flourish.draw path{ stroke-dasharray:var(--len); stroke-dashoffset:var(--len); }
-  .renew-flourish.draw.is-drawn path{ stroke-dashoffset:0; transition:stroke-dashoffset 1.6s cubic-bezier(.22,1,.36,1); }
-
-  /* traço vertical que o scroll "desenha" (desktop, decorativo) */
-  #scroll-trace{ position:fixed; top:0; left:14px; height:100vh; width:48px; z-index:5; pointer-events:none; opacity:.14; display:none; }
-  @media (min-width:1280px){ #scroll-trace{ display:block; } }
-  #scroll-trace path{ stroke-dasharray:var(--len); stroke-dashoffset:var(--len); }
-
-  /* reveals (GSAP define o estado; fallback caso JS/GSAP falhe) */
-  .reveal{ opacity:1; }
-  .js .reveal{ opacity:0; }
-
-  /* card de procedimento */
-  .proc-card{ transition:transform .4s cubic-bezier(.22,1,.36,1), border-color .4s, background-color .4s; }
-  .proc-card:hover{ transform:translateY(-4px); }
-
-  /* destaque do card Otomodelação */
-  .proc-featured{ position:relative; }
-  .proc-featured::before{
-    content:""; position:absolute; inset:0; border-radius:18px; padding:1px;
-    background:linear-gradient(135deg, var(--gold-bright), rgba(200,161,78,.25), var(--gold));
-    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
-  }
-
-  /* acordeão FAQ */
-  .faq-panel{ max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.22,1,.36,1); }
-  .faq-item[open-faq] .faq-icon{ transform:rotate(45deg); }
-
-  /* modal <dialog> */
-  dialog#proc-modal{ background:transparent; border:none; padding:0; max-width:100%; max-height:100%; color:var(--text-light); }
-  dialog#proc-modal::backdrop{ background:rgba(8,7,6,.72); backdrop-filter:blur(6px); }
-  dialog#proc-modal[open]{ display:grid; place-items:center; inset:0; width:100%; height:100%; }
-
-  /* botão flutuante: micro-pulse discreto */
-  @keyframes softpulse{ 0%,100%{ box-shadow:0 8px 30px rgba(200,161,78,.35),0 0 0 0 rgba(200,161,78,.45);} 50%{ box-shadow:0 8px 30px rgba(200,161,78,.45),0 0 0 12px rgba(200,161,78,0);} }
-  #wa-float{ animation:softpulse 3.2s ease-in-out infinite; }
-
-  /* RESPEITAR prefers-reduced-motion */
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    .hero-glow{ animation:none; }
-    #wa-float{ animation:none; }
-    .js .reveal{ opacity:1 !important; transform:none !important; }
-    .renew-flourish.draw path{ stroke-dashoffset:0 !important; transition:none; }
-    #scroll-trace path{ stroke-dashoffset:0 !important; }
-    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
-  }
-</style>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
+<body>
 
-<body class="bg-ink text-text-light antialiased">
-<script>document.body.classList.add('js');</script>
-
-<a href="#hero" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold focus:text-ink focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Pular para o conteúdo</a>
-
-<!-- Defs SVG globais (gradiente do ouro reaproveitado) -->
-<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
-  <linearGradient id="goldgrad" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#C8A14E"/><stop offset=".5" stop-color="#E4C97A"/><stop offset="1" stop-color="#C8A14E"/>
-  </linearGradient>
-  <linearGradient id="goldgrad-v" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#E4C97A"/><stop offset="1" stop-color="#C8A14E"/>
-  </linearGradient>
-</defs></svg>
-
-<!-- ELEMENTO ASSINATURA: traço vertical fluido desenhado no scroll (xl+) -->
-<svg id="scroll-trace" viewBox="0 0 48 1000" fill="none" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M24,0 C8,120 40,200 24,320 C10,420 38,520 24,640 C12,740 40,840 24,1000"
-        stroke="url(#goldgrad-v)" stroke-width="0.75" stroke-linecap="round"/>
-</svg>
-
-<!-- ============================================================ HEADER ============================================================ -->
-<header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-ink/80 backdrop-blur-md border-b border-white/5">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 h-[72px] flex items-center justify-between gap-4">
-    <!-- wordmark -->
-    <a href="#hero" class="leading-none shrink-0" aria-label="Renew Estética Avançada — início">
-      <span class="font-display text-text-light text-2xl sm:text-[26px] font-semibold tracking-[.18em]">RENEW</span>
-      <span class="block text-[9px] sm:text-[10px] text-gold/90 tracking-[.42em] uppercase mt-[3px]">Estética Avançada</span>
-    </a>
-
-    <!-- menu âncora (desktop) -->
-    <nav class="hidden md:flex items-center gap-9 text-sm text-text-light/80" aria-label="Seções">
-      <a href="#terapias" class="hover:text-gold-bright transition-colors">Terapias</a>
-      <a href="#estetica" class="hover:text-gold-bright transition-colors">Estética Facial</a>
-      <a href="#nutrologia" class="hover:text-gold-bright transition-colors">Saúde &amp; Emagrecimento</a>
-    </nav>
-
-    <div class="flex items-center gap-2">
-      <!-- WhatsApp sempre visível -->
-      <button type="button" onclick="abrirWhatsApp('avaliação')"
-        class="inline-flex items-center gap-2 rounded-full bg-gold text-ink font-medium text-sm px-4 sm:px-5 py-2.5 hover:bg-gold-bright transition-colors">
-        <span class="wa-ico w-[18px] h-[18px]"></span><span class="hidden sm:inline">WhatsApp</span>
-      </button>
-      <!-- hambúrguer (mobile) -->
-      <button id="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"
-        class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/10 text-text-light">
-        <i data-lucide="menu" class="w-5 h-5"></i>
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo" aria-label="Renew Estética Avançada">
+        <span class="logo-name" aria-hidden="true">Renew</span>
+        <span class="logo-sub" aria-hidden="true">Estética Avançada</span>
+      </a>
+      <nav class="nav-links" aria-label="Especialidades">
+        <a href="#terapias">Terapias</a>
+        <a href="#estetica">Estética Facial</a>
+        <a href="#nutrologia">Saúde &amp; Emagrecimento</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="m-menu">
+        <i data-lucide="menu"></i>
       </button>
     </div>
-  </div>
-
-  <!-- menu mobile -->
-  <nav id="mobile-menu" class="md:hidden hidden border-t border-white/5 bg-ink/95 backdrop-blur-md" aria-label="Seções (mobile)">
-    <div class="px-5 py-3 flex flex-col">
-      <a href="#terapias" class="py-3 text-text-light/85 border-b border-white/5">Terapias</a>
-      <a href="#estetica" class="py-3 text-text-light/85 border-b border-white/5">Estética Facial</a>
-      <a href="#nutrologia" class="py-3 text-text-light/85">Saúde &amp; Emagrecimento</a>
-    </div>
+  </header>
+  <nav class="mobile-menu" id="m-menu" aria-label="Menu">
+    <a href="#terapias">Terapias</a>
+    <a href="#estetica">Estética Facial</a>
+    <a href="#nutrologia">Saúde &amp; Emagrecimento</a>
+    <a href="#localizacao">Como chegar</a>
   </nav>
-</header>
 
-<main>
-<!-- ============================================================ HERO ============================================================ -->
-<section id="hero" class="grain relative min-h-[100svh] flex items-center overflow-hidden pt-[72px]">
-  <!-- fachada esmaecida -->
-  <img src="assets/fachada.jpg" alt="" aria-hidden="true"
-       class="absolute inset-0 w-full h-full object-cover opacity-[.16]" />
-  <div class="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink"></div>
-  <!-- luz quente animada -->
-  <div class="hero-glow" aria-hidden="true"></div>
+  <!-- ============================ HERO ============================ -->
+  <section class="hero grain">
+    <div class="hero-bg" style="background-image:url('assets/fachada.jpg')"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
 
-  <div class="relative z-10 mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24 text-center">
-    <!-- selo prova social -->
-    <div data-hero="1" class="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-white/[.03] px-4 py-1.5 text-xs sm:text-sm text-text-light/85">
-      <span class="text-gold-bright tracking-tight">★ 5,0</span>
-      <span class="w-px h-3 bg-white/15"></span>
-      <span>55+ avaliações no Google</span>
+    <!-- O Traço Renew (assinatura), sutil, à direita -->
+    <div class="trace-mark" style="top:8%; right:6%; width:120px; height:78%; opacity:.9" aria-hidden="true">
+      <svg viewBox="0 0 120 600" preserveAspectRatio="xMidYMid meet">
+        <path class="trace-stroke" d="M60,10 C20,70 100,120 55,190 C10,260 95,310 60,390 C30,470 90,520 55,590" />
+      </svg>
     </div>
 
-    <h1 class="font-display mt-7 text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl font-semibold tracking-[-.015em] text-text-light">
-      O segredo não é <span class="text-gold-bright italic">exagerar</span>.
-      <br class="hidden sm:block" />
-      É respeitar a sua
-      <span class="relative inline-block text-gold-bright italic">essência<!-- traço assinatura sob a palavra -->
-        <svg class="renew-flourish draw absolute left-0 -bottom-3 w-full h-4" viewBox="0 0 220 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
-          <path d="M4,16 C40,4 70,4 104,12 C130,18 132,4 150,8 C176,14 196,16 216,9" stroke="url(#goldgrad)" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
-      </span>.
-    </h1>
-
-    <p data-hero="2" class="mx-auto mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-text-light/75">
-      Uma clínica multidisciplinar onde estética, saúde e acolhimento se encontram.
-      Tratamentos seguros, naturais e sem afastá-la da sua rotina.
-    </p>
-
-    <div data-hero="3" class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-      <button type="button" onclick="abrirWhatsApp('avaliação')"
-        class="inline-flex items-center gap-2 rounded-full bg-gold text-ink font-medium px-7 py-3.5 hover:bg-gold-bright transition-colors text-[15px]">
-        <span class="wa-ico w-5 h-5"></span> Agendar minha avaliação
-      </button>
-      <a href="#terapias" class="inline-flex items-center gap-2 text-text-light/70 hover:text-gold-bright transition-colors text-sm px-3 py-2">
-        Ver tratamentos <i data-lucide="arrow-down" class="w-4 h-4"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- divisor assinatura -->
-<div class="renew-divider bg-ink" role="presentation"></div>
-
-<!-- ============================================================ INSTITUCIONAL ============================================================ -->
-<section class="bg-champagne text-text-dark py-20 sm:py-28 lg:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-    <div class="reveal">
-      <span class="inline-block w-12 h-px bg-gold mb-6"></span>
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-[2.9rem] leading-[1.1] font-semibold tracking-[-.01em]">
-        Muito além da estética. Uma jornada de <span class="text-gold italic">reencontro</span> com você mesma.
-      </h2>
-      <p class="mt-6 text-[15px] sm:text-base leading-relaxed text-text-dark/80 max-w-xl">
-        Na Renew, você não é mais um número numa agenda cheia. Somos uma clínica
-        multidisciplinar onde terapia, estética e saúde caminham juntas — com escuta,
-        tempo e protocolos pensados para a sua história.
-      </p>
-      <p class="mt-4 text-[15px] sm:text-base leading-relaxed text-text-dark/80 max-w-xl">
-        Aqui o <span class="font-display italic text-gold">cuidado</span> é individual: nada de linha
-        de produção, nada de resultado padronizado. Cada plano nasce de uma avaliação
-        presencial e respeita a sua essência.
-      </p>
-    </div>
-    <div class="reveal">
-      <div class="relative rounded-2xl overflow-hidden ring-1 ring-text-dark/10 shadow-[0_20px_60px_-25px_rgba(43,38,34,.45)]">
-        <img src="assets/fachada_vertical.jpg" loading="lazy"
-             alt="Fachada da clínica Renew Estética Avançada, com vitrine em vidro espelhado e a marca em dourado, em Blumenau."
-             class="w-full h-full object-cover aspect-[4/5] sm:aspect-[3/4]" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ HUB · #terapias (Gleice) ============================================================ -->
-<section id="terapias" class="grain bg-ink py-20 sm:py-28 lg:py-32 border-t border-white/5">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-    <!-- foto + perfil -->
-    <div class="reveal lg:sticky lg:top-28">
-      <div class="relative rounded-2xl overflow-hidden ring-1 ring-gold/15 max-w-md">
-        <img src="assets/gleice.jpg" loading="lazy"
-             alt="Gleice Felipe, terapeuta integrativa e massoterapeuta da Renew."
-             class="w-full object-cover aspect-[4/5]" />
-      </div>
-      <p class="mt-6 text-xs tracking-[.32em] uppercase text-gold/90">Terapias Clínicas &amp; Bem-estar</p>
-      <h3 class="font-display text-3xl sm:text-4xl font-semibold mt-2 text-text-light">Gleice Felipe</h3>
-      <p class="text-muted mt-1 text-sm">Terapeuta Integrativa · Massoterapeuta</p>
-      <p class="mt-5 text-text-light/75 leading-relaxed max-w-md">
-        Um espaço para o corpo desacelerar e reencontrar o equilíbrio. A Gleice cuida de
-        dores, tensões e estresse com terapias integrativas — e trata medidas e bem-estar
-        com massoterapia. Cuidado de quem entende o corpo como um todo.
-      </p>
-    </div>
-    <!-- cards -->
-    <div class="reveal grid sm:grid-cols-2 gap-4">
-      <button type="button" onclick="abrirModal('terapias-alivio')"
-        class="proc-card text-left rounded-[18px] border border-white/10 bg-ink-soft/60 p-6 hover:border-gold/40 hover:bg-ink-soft">
-        <span class="inline-flex w-11 h-11 items-center justify-center rounded-xl bg-gold/10 text-gold-bright mb-4"><i data-lucide="sparkles" class="w-5 h-5"></i></span>
-        <h4 class="font-display text-xl font-semibold text-text-light">Terapias de Alívio &amp; Equilíbrio</h4>
-        <p class="text-sm text-muted mt-2 leading-relaxed">Acupuntura, auriculoterapia, ventosaterapia, laserterapia e ILIB.</p>
-        <span class="inline-flex items-center gap-1 text-gold-bright text-sm mt-4">Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-      </button>
-      <button type="button" onclick="abrirModal('terapias-masso')"
-        class="proc-card text-left rounded-[18px] border border-white/10 bg-ink-soft/60 p-6 hover:border-gold/40 hover:bg-ink-soft">
-        <span class="inline-flex w-11 h-11 items-center justify-center rounded-xl bg-gold/10 text-gold-bright mb-4"><i data-lucide="hand-heart" class="w-5 h-5"></i></span>
-        <h4 class="font-display text-xl font-semibold text-text-light">Massoterapia Estética &amp; Drenagem</h4>
-        <p class="text-sm text-muted mt-2 leading-relaxed">Lipedema, celulite, gordura localizada e flacidez.</p>
-        <span class="inline-flex items-center gap-1 text-gold-bright text-sm mt-4">Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-      </button>
-      <div class="sm:col-span-2 mt-2">
-        <button type="button" onclick="abrirWhatsApp('Terapias com Gleice')"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-gold text-ink font-medium px-7 py-3.5 hover:bg-gold-bright transition-colors">
-          <span class="wa-ico w-5 h-5"></span> Agendar terapia com Gleice
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="renew-divider bg-ink" role="presentation"></div>
-
-<!-- ============================================================ HUB · #estetica (Dra. Eliane) ============================================================ -->
-<section id="estetica" class="bg-champagne text-text-dark py-20 sm:py-28 lg:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-    <div class="reveal lg:sticky lg:top-28">
-      <div class="relative rounded-2xl overflow-hidden ring-1 ring-gold/30 max-w-md shadow-[0_20px_60px_-25px_rgba(43,38,34,.4)]">
-        <img src="assets/eliane.jpg" loading="lazy"
-             alt="Dra. Eliane Brining, biomédica esteta da Renew."
-             class="w-full object-cover aspect-[4/5]" />
-      </div>
-      <p class="mt-6 text-xs tracking-[.32em] uppercase text-gold">Estética Facial &amp; Modulação</p>
-      <h3 class="font-display text-3xl sm:text-4xl font-semibold mt-2">Dra. Eliane Brining</h3>
-      <p class="text-text-dark/60 mt-1 text-sm">Biomédica Esteta · CRBM/SC 11688</p>
-      <p class="mt-5 text-text-dark/80 leading-relaxed max-w-md">
-        Naturalidade acima de tudo. A Dra. Eliane valoriza a sua beleza individual — sem
-        exageros, sem rostos iguais. Procedimentos seguros e minimamente invasivos para
-        você se reconhecer no espelho.
-      </p>
-    </div>
-
-    <div class="reveal space-y-4">
-      <!-- CARD DESTAQUE FORTE: Otomodelação -->
-      <button type="button" onclick="abrirModal('estetica-oto')"
-        class="proc-card proc-featured w-full text-left rounded-[18px] bg-ink text-text-light p-7 hover:-translate-y-1">
-        <div class="flex items-center justify-between gap-3 mb-3">
-          <span class="inline-flex w-12 h-12 items-center justify-center rounded-xl bg-gold/15 text-gold-bright"><i data-lucide="ear" class="w-6 h-6"></i></span>
-          <span class="text-[11px] tracking-[.2em] uppercase text-gold-bright border border-gold/40 rounded-full px-3 py-1">Em destaque</span>
-        </div>
-        <h4 class="font-display text-2xl sm:text-[1.7rem] font-semibold leading-tight">Otomodelação — Correção de Orelha de Abano</h4>
-        <p class="text-sm text-text-light/70 mt-3 leading-relaxed max-w-md">
-          Sem cirurgia, minimamente invasiva e com recuperação rápida. Volte a usar o
-          cabelo preso e a se mostrar como quiser.
+    <div class="wrap">
+      <div class="hero-content">
+        <h1 class="font-display">
+          O segredo não é <span class="gold-word">exagerar</span>.<br />
+          É respeitar a sua <span class="gold-word">essência</span>.
+        </h1>
+        <p class="sub">
+          Clínica multidisciplinar em Blumenau. Terapias, estética facial e saúde —
+          com método, registro profissional e resultado que parece natural.
         </p>
-        <span class="inline-flex items-center gap-1 text-gold-bright text-sm mt-5 font-medium">Entenda o procedimento <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-      </button>
-
-      <div class="grid sm:grid-cols-2 gap-4">
-        <button type="button" onclick="abrirModal('estetica-harmo')"
-          class="proc-card text-left rounded-[18px] border border-text-dark/10 bg-sand p-6 hover:border-gold/50">
-          <span class="inline-flex w-11 h-11 items-center justify-center rounded-xl bg-gold/15 text-gold mb-4"><i data-lucide="gem" class="w-5 h-5"></i></span>
-          <h4 class="font-display text-xl font-semibold">Harmonização Facial Natural</h4>
-          <p class="text-sm text-text-dark/60 mt-2 leading-relaxed">Preenchimento labial/facial e botox com naturalidade.</p>
-          <span class="inline-flex items-center gap-1 text-gold text-sm mt-4">Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-        </button>
-        <button type="button" onclick="abrirModal('estetica-pele')"
-          class="proc-card text-left rounded-[18px] border border-text-dark/10 bg-sand p-6 hover:border-gold/50">
-          <span class="inline-flex w-11 h-11 items-center justify-center rounded-xl bg-gold/15 text-gold mb-4"><i data-lucide="droplets" class="w-5 h-5"></i></span>
-          <h4 class="font-display text-xl font-semibold">Pele &amp; Vasinhos</h4>
-          <p class="text-sm text-text-dark/60 mt-2 leading-relaxed">Microagulhamento, limpeza de pele e secagem de vasinhos (PEIM).</p>
-          <span class="inline-flex items-center gap-1 text-gold text-sm mt-4">Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+        <button class="btn btn-gold btn-lg" onclick="scrollToEspecialistas()">
+          Agendar avaliação <i data-lucide="arrow-right"></i>
         </button>
       </div>
-
-      <button type="button" onclick="abrirWhatsApp('Estética Facial')"
-        class="mt-2 w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink text-text-light font-medium px-7 py-3.5 hover:bg-ink-soft transition-colors">
-        <span class="wa-ico w-5 h-5 text-gold-bright"></span> Avaliação de estética facial
-      </button>
     </div>
+  </section>
+
+  <!-- ===================== FAIXA INSTITUCIONAL ===================== -->
+  <section class="section section-light">
+    <div class="wrap">
+      <div class="reveal" style="max-width:62rem; margin-inline:auto; text-align:center;">
+        <span class="eyebrow">A Renew</span>
+        <h2 class="font-display" style="font-size:clamp(1.9rem,4.4vw,2.8rem); margin:.75rem 0 1.5rem;">
+          Estética não é pressa. É <span class="gold-word">cuidado</span> que respeita o seu tempo.
+        </h2>
+        <p class="lead" style="max-width:60ch; margin-inline:auto; font-size:1.1rem;">
+          A Renew reúne três especialistas — terapias integrativas, estética facial e nutrologia —
+          sob o mesmo teto. Aqui não existe receita de fast-food estético: cada plano nasce de uma
+          avaliação real, conduzida por quem tem registro e responsabilidade pelo que faz.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-dark" style="background:var(--ink);">
+    <div class="divider-wrap"><hr class="trace-divider" style="width:min(90%, 70rem);" /></div>
   </div>
-</section>
 
-<div class="renew-divider bg-ink" role="presentation"></div>
-
-<!-- ============================================================ HUB · #nutrologia (Dra. Tatiana) ============================================================ -->
-<section id="nutrologia" class="grain bg-ink py-20 sm:py-28 lg:py-32 border-t border-white/5">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-    <div class="reveal lg:sticky lg:top-28">
-      <div class="relative rounded-2xl overflow-hidden ring-1 ring-gold/15 max-w-md">
-        <img src="assets/tatiana.jpg" loading="lazy"
-             alt="Dra. Tatiana Toledo, médica nutróloga da Renew."
-             class="w-full object-cover aspect-[4/5]" />
+  <!-- ===================== VITRINE — 3 BLOCOS ===================== -->
+  <section class="section section-dark grain" id="especialistas">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">As especialistas</span>
+        <h2 class="font-display">Três olhares. Um só padrão de cuidado.</h2>
+        <p class="lead" style="margin-inline:auto;">Escolha por onde começar. Cada especialista tem uma página
+          dedicada com tratamentos, resultados reais e respostas às suas dúvidas.</p>
       </div>
-      <p class="mt-6 text-xs tracking-[.32em] uppercase text-gold/90">Saúde Integrativa &amp; Emagrecimento</p>
-      <h3 class="font-display text-3xl sm:text-4xl font-semibold mt-2 text-text-light">Dra. Tatiana Toledo</h3>
-      <p class="text-muted mt-1 text-sm">Médica Nutróloga · CRM SC 25019</p>
-      <p class="mt-5 text-text-light/75 leading-relaxed max-w-md">
-        Saúde de dentro pra fora. A Dra. Tatiana cuida do emagrecimento com diagnóstico
-        médico e acompanhamento real — para encerrar o efeito sanfona e devolver energia,
-        com um plano feito sob medida pra você.
-      </p>
-    </div>
-    <div class="reveal grid sm:grid-cols-2 gap-4">
-      <button type="button" onclick="abrirModal('nutro-emagrece')"
-        class="proc-card text-left rounded-[18px] border border-white/10 bg-ink-soft/60 p-6 hover:border-gold/40 hover:bg-ink-soft">
-        <span class="inline-flex w-11 h-11 items-center justify-center rounded-xl bg-gold/10 text-gold-bright mb-4"><i data-lucide="activity" class="w-5 h-5"></i></span>
-        <h4 class="font-display text-xl font-semibold text-text-light">Emagrecimento com Bioimpedância</h4>
-        <p class="text-sm text-muted mt-2 leading-relaxed">Fim do efeito sanfona, diagnóstico médico e plano individual.</p>
-        <span class="inline-flex items-center gap-1 text-gold-bright text-sm mt-4">Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-      </button>
-      <button type="button" onclick="abrirModal('nutro-inj')"
-        class="proc-card text-left rounded-[18px] border border-white/10 bg-ink-soft/60 p-6 hover:border-gold/40 hover:bg-ink-soft">
-        <span class="inline-flex w-11 h-11 items-center justify-center rounded-xl bg-gold/10 text-gold-bright mb-4"><i data-lucide="syringe" class="w-5 h-5"></i></span>
-        <h4 class="font-display text-xl font-semibold text-text-light">Terapias Injetáveis &amp; Reposição Vitamínica</h4>
-        <p class="text-sm text-muted mt-2 leading-relaxed">Vitaminas e minerais injetáveis e teste genético.</p>
-        <span class="inline-flex items-center gap-1 text-gold-bright text-sm mt-4">Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-      </button>
-      <div class="sm:col-span-2 mt-2">
-        <button type="button" onclick="abrirWhatsApp('Avaliação com a Dra. Tatiana')"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-gold text-ink font-medium px-7 py-3.5 hover:bg-gold-bright transition-colors">
-          <span class="wa-ico w-5 h-5"></span> Iniciar avaliação com a Dra. Tatiana
-        </button>
+
+      <div class="vitrine">
+        <!-- GLEICE (foto MENOR — pedido dela) -->
+        <article class="specialist-card reveal" id="terapias">
+          <img class="spec-photo spec-photo--sm spec-photo--gleice" src="assets/gleice.jpg"
+               alt="Gleice Felipe, Terapeuta Integrativa e Massoterapeuta da Renew." loading="lazy" />
+          <h3 class="spec-name font-display">Gleice Felipe</h3>
+          <p class="spec-role">Terapeuta Integrativa e Massoterapeuta</p>
+          <p class="spec-reg">Atendimento humano e individualizado</p>
+          <p class="spec-desc">Alívio de dor, tensão e estresse, redução de medidas e equilíbrio entre corpo e mente.</p>
+          <div class="tags">
+            <span class="tag">Terapias integrativas</span>
+            <span class="tag">Drenagem</span>
+            <span class="tag">Lipedema</span>
+          </div>
+          <a class="btn btn-ghost" href="gleice.html">Conhecer Gleice <i data-lucide="arrow-right"></i></a>
+        </article>
+
+        <!-- ELIANE -->
+        <article class="specialist-card reveal" id="estetica">
+          <img class="spec-photo spec-photo--eliane" src="assets/eliane.jpg"
+               alt="Dra. Eliane Brining, Biomédica Esteta da Renew." loading="lazy" />
+          <h3 class="spec-name font-display">Dra. Eliane Brining</h3>
+          <p class="spec-role">Biomédica Esteta</p>
+          <p class="spec-reg">CRBM/SC 11688</p>
+          <p class="spec-desc">Naturalidade acima de tudo. Referência em otomodelação (orelha de abano) e harmonização que ninguém percebe — só nota que você está bem.</p>
+          <div class="tags">
+            <span class="tag">Orelha de Abano</span>
+            <span class="tag">Harmonização</span>
+            <span class="tag">Vasinhos</span>
+          </div>
+          <a class="btn btn-ghost" href="eliane.html">Conhecer Dra. Eliane <i data-lucide="arrow-right"></i></a>
+        </article>
+
+        <!-- TATIANA -->
+        <article class="specialist-card reveal" id="nutrologia">
+          <img class="spec-photo spec-photo--tatiana" src="assets/tatiana.jpg"
+               alt="Dra. Tatiana Toledo, Médica Nutróloga da Renew." loading="lazy" />
+          <h3 class="spec-name font-display">Dra. Tatiana Toledo</h3>
+          <p class="spec-role">Médica Nutróloga</p>
+          <p class="spec-reg">CRM/SC 25019</p>
+          <p class="spec-desc">Emagrecimento de verdade — investigação médica, bioimpedância e plano individual. Fim do efeito sanfona.</p>
+          <div class="tags">
+            <span class="tag">Emagrecimento</span>
+            <span class="tag">Bioimpedância</span>
+            <span class="tag">Injetáveis</span>
+          </div>
+          <a class="btn btn-ghost" href="tatiana.html">Conhecer Dra. Tatiana <i data-lucide="arrow-right"></i></a>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="renew-divider bg-ink" role="presentation"></div>
+  <!-- ===================== PROVA SOCIAL ===================== -->
+  <section class="section section-light">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Quem já passou pela Renew</span>
+        <h2 class="font-display">A <span class="gold-word">confiança</span> que se constrói no detalhe.</h2>
+      </div>
 
-<!-- ============================================================ PROVA SOCIAL ============================================================ -->
-<section class="grain bg-ink py-20 sm:py-28">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="reveal text-center">
-      <p class="inline-flex items-center gap-3 text-text-light/85">
-        <span class="font-display text-3xl text-gold-bright">★ 5,0</span>
-        <span class="w-px h-6 bg-white/15"></span>
-        <span class="text-sm tracking-wide">no Google · 55+ avaliações</span>
-      </p>
-    </div>
-
-    <!-- depoimentos (placeholders marcados) -->
-    <div class="reveal mt-12 grid md:grid-cols-3 gap-5">
-      <!-- DEPOIMENTO REAL: substituir texto e nome -->
-      <figure class="rounded-2xl border border-white/10 bg-ink-soft/50 p-6">
-        <div class="text-gold-bright text-sm mb-3" aria-hidden="true">★★★★★</div>
-        <blockquote class="text-text-light/80 leading-relaxed text-[15px]">“Me senti acolhida do início ao fim. O resultado ficou natural, exatamente como eu queria.”</blockquote>
-        <figcaption class="mt-4 text-sm text-muted">— Paciente Renew <span class="text-muted/60">· Blumenau</span></figcaption>
-      </figure>
-      <!-- DEPOIMENTO REAL: substituir texto e nome -->
-      <figure class="rounded-2xl border border-white/10 bg-ink-soft/50 p-6">
-        <div class="text-gold-bright text-sm mb-3" aria-hidden="true">★★★★★</div>
-        <blockquote class="text-text-light/80 leading-relaxed text-[15px]">“Atendimento humano e profissional. Explicaram cada etapa com calma e segurança.”</blockquote>
-        <figcaption class="mt-4 text-sm text-muted">— Paciente Renew <span class="text-muted/60">· Blumenau</span></figcaption>
-      </figure>
-      <!-- DEPOIMENTO REAL: substituir texto e nome -->
-      <figure class="rounded-2xl border border-white/10 bg-ink-soft/50 p-6">
-        <div class="text-gold-bright text-sm mb-3" aria-hidden="true">★★★★★</div>
-        <blockquote class="text-text-light/80 leading-relaxed text-[15px]">“Finalmente um lugar que cuida da saúde junto com a estética. Recomendo de olhos fechados.”</blockquote>
-        <figcaption class="mt-4 text-sm text-muted">— Paciente Renew <span class="text-muted/60">· Blumenau</span></figcaption>
-      </figure>
-    </div>
-
-    <!-- galeria ANTES/DEPOIS (espaço reservado) -->
-    <div class="reveal mt-12">
-      <p class="text-center text-xs tracking-[.3em] uppercase text-gold/80 mb-5">Resultados reais</p>
-      <!-- ANTES/DEPOIS: inserir imagens reais (substituir os blocos abaixo) -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="aspect-[3/4] rounded-xl border border-dashed border-white/15 bg-ink-soft/40 grid place-items-center text-center">
-          <span class="text-muted text-xs px-3">Antes / Depois<br><span class="text-muted/60">imagem real</span></span>
+      <div class="review-strip reveal" style="margin-bottom:2.5rem;">
+        <div>
+          <div class="score">5,0</div>
+          <div class="stars">★★★★★</div>
         </div>
-        <div class="aspect-[3/4] rounded-xl border border-dashed border-white/15 bg-ink-soft/40 grid place-items-center text-center">
-          <span class="text-muted text-xs px-3">Antes / Depois<br><span class="text-muted/60">imagem real</span></span>
-        </div>
-        <div class="aspect-[3/4] rounded-xl border border-dashed border-white/15 bg-ink-soft/40 grid place-items-center text-center">
-          <span class="text-muted text-xs px-3">Antes / Depois<br><span class="text-muted/60">imagem real</span></span>
-        </div>
-        <div class="aspect-[3/4] rounded-xl border border-dashed border-white/15 bg-ink-soft/40 grid place-items-center text-center">
-          <span class="text-muted text-xs px-3">Antes / Depois<br><span class="text-muted/60">imagem real</span></span>
+        <div style="text-align:left; max-width:30ch;">
+          <strong style="color:var(--text-dark);">55+ avaliações no Google</strong><br />
+          <span style="color:var(--muted); font-size:.9rem;">Nota máxima de quem já foi atendido na clínica.</span>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============================================================ FAQ ============================================================ -->
-<section class="bg-sand text-text-dark py-20 sm:py-28">
-  <div class="mx-auto max-w-3xl px-5 sm:px-8">
-    <div class="reveal text-center mb-12">
-      <span class="inline-block w-12 h-px bg-gold mb-5"></span>
-      <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-[-.01em]">Perguntas que toda paciente faz</h2>
-    </div>
-    <div id="faq" class="reveal divide-y divide-text-dark/10 border-y border-text-dark/10">
-      <!-- item -->
-      <div class="faq-item">
-        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left py-5" aria-expanded="false">
-          <span class="font-display text-lg sm:text-xl font-semibold">Dói?</span>
-          <i data-lucide="plus" class="faq-icon w-5 h-5 text-gold shrink-0 transition-transform"></i>
-        </button>
-        <div class="faq-panel"><p class="pb-5 text-text-dark/75 leading-relaxed">Conforto é prioridade: usamos anestésicos tópicos, técnicas modernas não incisionais e refrigeração cutânea. A maioria das pacientes relata um procedimento tranquilo.</p></div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left py-5" aria-expanded="false">
-          <span class="font-display text-lg sm:text-xl font-semibold">Vou ter que parar minha rotina?</span>
-          <i data-lucide="plus" class="faq-icon w-5 h-5 text-gold shrink-0 transition-transform"></i>
-        </button>
-        <div class="faq-panel"><p class="pb-5 text-text-dark/75 leading-relaxed">Raramente. São processos ambulatoriais, com retorno quase imediato às atividades e sem imobilização prolongada.</p></div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left py-5" aria-expanded="false">
-          <span class="font-display text-lg sm:text-xl font-semibold">Quanto custa?</span>
-          <i data-lucide="plus" class="faq-icon w-5 h-5 text-gold shrink-0 transition-transform"></i>
-        </button>
-        <div class="faq-panel"><p class="pb-5 text-text-dark/75 leading-relaxed">Não padronizamos: cada protocolo nasce de uma avaliação individual e presencial. O valor reflete o plano feito sob medida pra você.</p></div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left py-5" aria-expanded="false">
-          <span class="font-display text-lg sm:text-xl font-semibold">É seguro?</span>
-          <i data-lucide="plus" class="faq-icon w-5 h-5 text-gold shrink-0 transition-transform"></i>
-        </button>
-        <div class="faq-panel"><p class="pb-5 text-text-dark/75 leading-relaxed">Sim. Profissionais registradas em seus conselhos de classe, protocolos rígidos de biossegurança e antissepsia e materiais de qualidade.</p></div>
+      <div class="grid-3">
+        <div class="testimonial reveal">
+          <div class="stars">★★★★★</div>
+          <p>“Que lugar incrível. Desde a primeira recepção e todo o acolhimento. Minha mãe é idosa e levei ela para fazer acupuntura e todo o cuidado que elas tiveram não tem palavras para descrever. Lugar que traz paz, super recomendo.”</p>
+          <div class="who">— Paciente Renew · Google</div>
+        </div>
+        <div class="testimonial reveal" data-delay="80">
+          <div class="stars">★★★★★</div>
+          <p>“Minha experiência foi excelente! Fiz microagulhamento capilar e botox e fiquei muito satisfeita com o atendimento e com o cuidado da equipe. Profissionais atenciosos, ambiente acolhedor e muita segurança durante os procedimentos. Recomendo a clínica pela qualidade, profissionalismo e atenção com o paciente.”</p>
+          <div class="who">— Paciente Renew · Google</div>
+        </div>
+        <div class="testimonial reveal" data-delay="160">
+          <div class="stars">★★★★★</div>
+          <p>“Amei o atendimento, o espaço e recomendo! As meninas são maravilhosas, me senti muito acolhida e segura!”</p>
+          <div class="who">— Paciente Renew · Google</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================ LOCALIZAÇÃO ============================================================ -->
-<section class="grain bg-ink py-20 sm:py-28 border-t border-white/5">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-    <div class="reveal">
-      <span class="inline-block w-12 h-px bg-gold mb-6"></span>
-      <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-[-.01em] text-text-light">
-        Venha tomar um café e conversar sobre o seu <span class="text-gold-bright italic">bem-estar</span>.
-      </h2>
-      <p class="mt-5 text-text-light/75 leading-relaxed">
-        Estamos no bairro Velha, em Blumenau. Um ambiente acolhedor, pensado para você se
-        sentir em casa desde a recepção.
-      </p>
-      <div class="mt-7 flex items-start gap-3 text-text-light/85">
-        <i data-lucide="map-pin" class="w-5 h-5 text-gold-bright mt-0.5 shrink-0"></i>
-        <p>R. Mal. Deodoro, 544 — Sala 02<br>Velha, Blumenau - SC, 89036-301</p>
+  <!-- ===================== LOCALIZAÇÃO ===================== -->
+  <section class="section section-dark grain" id="localizacao">
+    <div class="wrap">
+      <div class="grid-2" style="gap:3rem; align-items:center;">
+        <div class="reveal">
+          <span class="eyebrow">Onde estamos</span>
+          <h2 class="font-display" style="margin:.75rem 0 1.5rem;">No coração da Velha, em Blumenau.</h2>
+          <div class="address-line">
+            <i data-lucide="map-pin"></i>
+            <div>R. Mal. Deodoro, 544 — Sala 02<br />Velha, Blumenau - SC · 89036-301</div>
+          </div>
+          <div class="address-line">
+            <i data-lucide="message-circle"></i>
+            <div>(47) 99196-8525</div>
+          </div>
+          <div class="address-line">
+            <i data-lucide="instagram"></i>
+            <div>@renewesteticablumenau</div>
+          </div>
+          <a class="btn btn-gold mt" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/dir/?api=1&destination=R.+Mal.+Deodoro,+544+-+Velha,+Blumenau+-+SC,+89036-301">
+            Como chegar <i data-lucide="navigation"></i>
+          </a>
+        </div>
+        <div class="map-frame reveal">
+          <iframe title="Mapa da Renew Estética Avançada" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=R.+Mal.+Deodoro,+544+-+Velha,+Blumenau+-+SC,+89036-301&output=embed"></iframe>
+        </div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=R.+Mal.+Deodoro,+544+-+Velha,+Blumenau+-+SC,+89036-301" target="_blank" rel="noopener"
-        class="mt-7 inline-flex items-center gap-2 rounded-full border border-gold/40 text-gold-bright font-medium px-6 py-3 hover:bg-gold hover:text-ink transition-colors">
-        <i data-lucide="navigation" class="w-4 h-4"></i> Como chegar
-      </a>
     </div>
-    <div class="reveal">
-      <div class="rounded-2xl overflow-hidden ring-1 ring-white/10">
-        <iframe title="Mapa da localização da Renew Estética Avançada" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=R.+Mal.+Deodoro,+544+-+Velha,+Blumenau+-+SC,+89036-301&output=embed"
-          class="w-full h-[320px] sm:h-[400px] border-0"></iframe>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <span class="logo logo--footer" aria-label="Renew Estética Avançada">
+            <span class="logo-name" aria-hidden="true">Renew</span>
+            <span class="logo-sub" aria-hidden="true">Estética Avançada</span>
+          </span>
+          <p style="margin-top:1rem; max-width:34ch;">Estética Avançada · Blumenau. Terapias, estética facial e saúde,
+            com responsabilidade profissional e foco na naturalidade.</p>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <p>R. Mal. Deodoro, 544 — Sala 02</p>
+          <p>Velha, Blumenau - SC</p>
+          <p><a href="https://wa.me/5547991968525" target="_blank" rel="noopener">(47) 99196-8525</a></p>
+          <p><a href="https://instagram.com/renewesteticablumenau" target="_blank" rel="noopener">@renewesteticablumenau</a></p>
+        </div>
+      </div>
+      <div class="compliance">
+        <p>© <span data-year></span> Renew Estética Avançada. Todos os direitos reservados.</p>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-</main>
+  <!-- WhatsApp flutuante -->
+  <button class="wa-float" aria-label="Falar no WhatsApp" onclick="abrirWhatsApp('uma avaliação na Renew')">
+    <i data-lucide="message-circle"></i>
+  </button>
 
-<!-- ============================================================ FOOTER (compliance) ============================================================ -->
-<footer class="grain bg-ink border-t border-white/10 pt-16 pb-10">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8 grid sm:grid-cols-3 gap-10">
-    <div>
-      <span class="font-display text-text-light text-xl font-semibold tracking-[.18em]">RENEW</span>
-      <span class="block text-[10px] text-gold/90 tracking-[.4em] uppercase mt-1 mb-4">Estética Avançada</span>
-      <p class="text-sm text-muted leading-relaxed">R. Mal. Deodoro, 544 — Sala 02<br>Velha, Blumenau - SC, 89036-301</p>
-      <a href="https://instagram.com/renewesteticablumenau" target="_blank" rel="noopener"
-        class="inline-flex items-center gap-2 text-sm text-text-light/80 hover:text-gold-bright transition-colors mt-4">
-        <i data-lucide="instagram" class="w-4 h-4"></i> @renewesteticablumenau
-      </a>
-    </div>
-    <div class="text-sm text-muted leading-relaxed">
-      <p class="text-text-light/70 mb-2">Responsável Técnico</p>
-      <!-- INSERIR NOME do responsável técnico -->
-      <p>[INSERIR NOME] — [registro]</p>
-      <p class="mt-3 text-muted/90">Profissionais: Dra. Eliane Brining (CRBM/SC 11688) · Dra. Tatiana Toledo (CRM SC 25019) · Gleice Felipe (Terapeuta Integrativa e Massoterapeuta).</p>
-      <p class="mt-3 text-xs text-muted/80">As informações deste site têm caráter informativo e não substituem a consulta presencial.</p>
-    </div>
-    <div class="text-sm text-muted">
-      <p class="text-text-light/70 mb-3">Privacidade &amp; Segurança</p>
-      <ul class="space-y-2">
-        <li class="inline-flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-gold/80"></i> Conformidade LGPD</li>
-        <li class="inline-flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-gold/80"></i> Ambiente seguro (SSL)</li>
-      </ul>
-    </div>
-  </div>
-  <div class="mx-auto max-w-6xl px-5 sm:px-8 mt-12 pt-6 border-t border-white/5">
-    <p class="text-xs text-muted/70">© <span id="year"></span> Renew Estética Avançada. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
-<!-- ============================================================ WHATSAPP FLUTUANTE ============================================================ -->
-<button id="wa-float" type="button" onclick="abrirWhatsApp('avaliação')" aria-label="Falar no WhatsApp"
-  class="fixed bottom-5 right-5 z-50 inline-flex items-center justify-center w-14 h-14 rounded-full bg-gold text-ink hover:bg-gold-bright transition-colors">
-  <span class="wa-ico w-7 h-7"></span>
-</button>
-
-<!-- ============================================================ MODAL (procedimentos) ============================================================ -->
-<dialog id="proc-modal" aria-labelledby="modal-title">
-  <div class="grain relative w-[92vw] max-w-lg rounded-2xl bg-ink-soft ring-1 ring-gold/20 p-7 sm:p-8 m-auto">
-    <button type="button" id="modal-close" aria-label="Fechar"
-      class="absolute top-4 right-4 inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/10 text-text-light/80 hover:text-gold-bright hover:border-gold/40 transition-colors">
-      <i data-lucide="x" class="w-5 h-5"></i>
-    </button>
-    <p id="modal-eyebrow" class="text-xs tracking-[.3em] uppercase text-gold/90 pr-10"></p>
-    <h3 id="modal-title" class="font-display text-2xl sm:text-3xl font-semibold mt-2 text-text-light leading-tight"></h3>
-    <p id="modal-body" class="mt-4 text-text-light/80 leading-relaxed text-[15px]"></p>
-    <p class="mt-4 flex items-start gap-2 text-sm text-text-light/70">
-      <i data-lucide="shield-check" class="w-4 h-4 text-gold-bright mt-0.5 shrink-0"></i>
-      <span id="modal-safety"></span>
-    </p>
-    <button type="button" id="modal-cta"
-      class="mt-7 w-full inline-flex items-center justify-center gap-2 rounded-full bg-gold text-ink font-medium px-7 py-3.5 hover:bg-gold-bright transition-colors">
-      <span class="wa-ico w-5 h-5"></span> <span>Agendar pelo WhatsApp</span>
-    </button>
-  </div>
-</dialog>
-
-<!-- ============================================================ SCRIPTS ============================================================ -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script>
-(function () {
-  'use strict';
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var WA_NUMBER = '5547991968525';
-
-  /* ---------- ÍCONE WHATSAPP (SVG inline, não-emoji) ---------- */
-  var WA_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-full h-full"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4c-4.38 0-7.93 3.55-7.94 7.93 0 1.4.37 2.76 1.07 3.96L4 20l4.2-1.1a7.9 7.9 0 0 0 3.79.97h.04c4.38 0 7.93-3.55 7.94-7.93a7.88 7.88 0 0 0-2.33-5.62M12.05 18.5h-.03a6.6 6.6 0 0 1-3.35-.92l-.24-.14-2.49.65.66-2.43-.16-.25a6.56 6.56 0 0 1-1-3.48c0-3.64 2.96-6.6 6.61-6.6a6.56 6.56 0 0 1 4.66 1.94 6.56 6.56 0 0 1 1.93 4.67c-.01 3.64-2.97 6.6-6.6 6.6m3.62-4.94c-.2-.1-1.17-.58-1.35-.64-.18-.07-.32-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.59-.53-.99-1.18-1.1-1.38-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.34.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.38-.01c-.13 0-.35.05-.53.25-.18.2-.7.68-.7 1.66 0 .98.71 1.92.81 2.06.1.13 1.4 2.13 3.38 2.99.47.2.84.33 1.13.42.47.15.9.13 1.24.08.38-.06 1.17-.48 1.33-.94.17-.46.17-.85.12-.94-.05-.08-.18-.13-.38-.23"/></svg>';
-  document.querySelectorAll('.wa-ico').forEach(function (el) { el.innerHTML = WA_SVG; });
-
-  /* ---------- WHATSAPP + UTM (CLAUDE §7) ---------- */
-  window.abrirWhatsApp = function (procedimento) {
-    var u = {};
-    try { u = JSON.parse(sessionStorage.getItem('renew_utms') || '{}'); } catch (e) {}
-    var tag = (u.utm_campaign || u.utm_source)
-      ? ' [campanha: ' + (u.utm_campaign || '-') + ' | origem: ' + (u.utm_source || '-') + ']'
-      : '';
-    var msg = 'Olá! Gostaria de agendar uma avaliação para ' + procedimento + '.' + tag;
-    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-  };
-
-  /* ---------- CONTEÚDO DOS MODAIS ---------- */
-  var PROCS = {
-    'terapias-alivio': { eyebrow:'Terapias · Gleice Felipe', title:'Terapias de Alívio & Equilíbrio',
-      body:'Acupuntura, auriculoterapia, ventosaterapia, laserterapia e ILIB para aliviar dores, tensões e estresse — e devolver equilíbrio ao corpo e à mente.',
-      safety:'Técnicas integrativas conduzidas por terapeuta e massoterapeuta, com avaliação individual.', wa:'Terapias de Alívio & Equilíbrio' },
-    'terapias-masso': { eyebrow:'Terapias · Gleice Felipe', title:'Massoterapia Estética & Drenagem',
-      body:'Massoterapia estética e drenagem linfática para tratar lipedema, celulite, gordura localizada e flacidez, reduzindo medidas com toque técnico e acolhedor.',
-      safety:'Cada protocolo começa por uma avaliação individual do seu caso.', wa:'Massoterapia Estética & Drenagem' },
-    'estetica-oto': { eyebrow:'Estética · Dra. Eliane Brining', title:'Otomodelação — Orelha de Abano',
-      body:'Esconder o rosto, evitar prender o cabelo, escolher o penteado pelo que ele disfarça — chega disso. A otomodelação corrige a orelha de abano de forma segura e minimamente invasiva, sem cortes cirúrgicos e com recuperação rápida, para você voltar a se mostrar como quiser.',
-      safety:'Procedimento ambulatorial, realizado por biomédica esteta registrada (CRBM/SC 11688).', wa:'Otomodelação (Orelha de Abano)' },
-    'estetica-harmo': { eyebrow:'Estética · Dra. Eliane Brining', title:'Harmonização Facial Natural',
-      body:'Preenchimento labial e facial e toxina botulínica aplicados com leveza, respeitando os seus traços. O objetivo é você, descansada — nunca um rosto artificial.',
-      safety:'Aplicação por biomédica esteta registrada (CRBM/SC 11688), com produtos de qualidade.', wa:'Harmonização Facial Natural' },
-    'estetica-pele': { eyebrow:'Estética · Dra. Eliane Brining', title:'Pele & Vasinhos',
-      body:'Microagulhamento, limpeza de pele e secagem de vasinhos (PEIM) para uma pele mais firme, uniforme e saudável.',
-      safety:'Protocolos com biossegurança e antissepsia rigorosas.', wa:'Pele & Vasinhos' },
-    'nutro-emagrece': { eyebrow:'Saúde · Dra. Tatiana Toledo', title:'Emagrecimento com Bioimpedância',
-      body:'Entendemos o seu corpo com bioimpedância e diagnóstico médico para montar um plano individual que encerra o efeito sanfona — emagrecimento com acompanhamento de verdade.',
-      safety:'Conduzido por médica nutróloga (CRM SC 25019).', wa:'Emagrecimento com Bioimpedância' },
-    'nutro-inj': { eyebrow:'Saúde · Dra. Tatiana Toledo', title:'Injetáveis & Reposição Vitamínica',
-      body:'Vitaminas e minerais injetáveis e teste genético para repor o que falta e potencializar a sua saúde, energia e disposição.',
-      safety:'Indicação e aplicação sob avaliação médica (CRM SC 25019).', wa:'Terapias Injetáveis & Reposição Vitamínica' }
-  };
-
-  /* ---------- MODAL (<dialog> nativo: foco preso, ESC, backdrop, body-lock) ---------- */
-  var modal = document.getElementById('proc-modal');
-  var lastFocus = null;
-  window.abrirModal = function (id) {
-    var p = PROCS[id]; if (!p) return;
-    document.getElementById('modal-eyebrow').textContent = p.eyebrow;
-    document.getElementById('modal-title').textContent = p.title;
-    document.getElementById('modal-body').textContent = p.body;
-    document.getElementById('modal-safety').textContent = p.safety;
-    var cta = document.getElementById('modal-cta');
-    cta.onclick = function () { window.abrirWhatsApp(p.wa); };
-    lastFocus = document.activeElement;
-    if (typeof modal.showModal === 'function') modal.showModal(); else modal.setAttribute('open','');
-    document.body.style.overflow = 'hidden';
-    document.getElementById('modal-close').focus();
-  };
-  function fecharModal () {
-    if (modal.open) modal.close(); else modal.removeAttribute('open');
-    document.body.style.overflow = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-  document.getElementById('modal-close').addEventListener('click', fecharModal);
-  modal.addEventListener('cancel', function (e) { e.preventDefault(); fecharModal(); }); // ESC
-  modal.addEventListener('click', function (e) { if (e.target === modal) fecharModal(); }); // backdrop
-
-  /* ---------- MENU MOBILE ---------- */
-  var menuBtn = document.getElementById('menu-btn');
-  var mobileMenu = document.getElementById('mobile-menu');
-  menuBtn.addEventListener('click', function () {
-    var open = mobileMenu.classList.toggle('hidden') === false;
-    menuBtn.setAttribute('aria-expanded', String(open));
-  });
-  mobileMenu.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded','false'); });
-  });
-
-  /* ---------- FAQ ACORDEÃO (um aberto por vez) ---------- */
-  var triggers = document.querySelectorAll('.faq-trigger');
-  triggers.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var panel = btn.nextElementSibling;
-      var isOpen = btn.getAttribute('aria-expanded') === 'true';
-      triggers.forEach(function (b) {
-        b.setAttribute('aria-expanded','false');
-        b.nextElementSibling.style.maxHeight = null;
-        b.querySelector('.faq-icon').style.transform = '';
-      });
-      if (!isOpen) {
-        btn.setAttribute('aria-expanded','true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        btn.querySelector('.faq-icon').style.transform = 'rotate(45deg)';
-      }
-    });
-  });
-
-  /* ---------- ÍCONES + ANO ---------- */
-  if (window.lucide) lucide.createIcons();
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  /* ---------- ELEMENTO ASSINATURA: divisores (traço fluido) ---------- */
-  var DIVIDER = '<div class="mx-auto max-w-6xl px-5 sm:px-8 py-10 sm:py-14 flex items-center justify-center gap-4" aria-hidden="true">'
-    + '<span class="h-px w-16 sm:w-40 bg-gradient-to-r from-transparent to-gold/40"></span>'
-    + '<svg class="renew-flourish draw w-[120px] h-[44px]" viewBox="0 0 200 80" fill="none" preserveAspectRatio="xMidYMid meet">'
-    + '<path d="M14,40 C56,40 64,12 96,22 C124,31 116,66 92,58 C76,52 86,30 108,36 C140,45 150,40 186,40" stroke="url(#goldgrad)" stroke-width="2" stroke-linecap="round"/>'
-    + '</svg>'
-    + '<span class="h-px w-16 sm:w-40 bg-gradient-to-l from-transparent to-gold/40"></span>'
-    + '</div>';
-  document.querySelectorAll('.renew-divider').forEach(function (el) { el.innerHTML = DIVIDER; });
-
-  // mede comprimento dos paths p/ animar o "desenho"
-  document.querySelectorAll('.renew-flourish.draw path').forEach(function (path) {
-    var len = path.getTotalLength();
-    path.parentElement.style.setProperty('--len', len);
-  });
-
-  /* ---------- ANIMAÇÕES GSAP (discretas; puladas em reduced-motion) ---------- */
-  if (!prefersReduced && window.gsap) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // entrada orquestrada do hero (uma vez, no load)
-    gsap.from('[data-hero]', { y: 18, opacity: 0, duration: .8, ease: 'power3.out', stagger: .12, delay: .15 });
-
-    // reveals discretos (fade + 14px)
-    gsap.utils.toArray('.reveal').forEach(function (el) {
-      gsap.fromTo(el, { y: 14, opacity: 0 }, {
-        y: 0, opacity: 1, duration: .7, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 86%', once: true }
-      });
-    });
-
-    // flourishes "se desenham" ao entrar na viewport
-    gsap.utils.toArray('.renew-flourish.draw').forEach(function (el) {
-      ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true,
-        onEnter: function () { el.classList.add('is-drawn'); } });
-    });
-
-    // ASSINATURA: traço vertical desenhado conforme o scroll (xl+)
-    var st = document.querySelector('#scroll-trace path');
-    if (st) {
-      var L = st.getTotalLength();
-      st.style.setProperty('--len', L);
-      gsap.to(st, { strokeDashoffset: 0, ease: 'none',
-        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: .6 } });
-    }
-  } else {
-    // fallback: tudo visível, traços já desenhados
-    document.querySelectorAll('.reveal').forEach(function (el){ el.style.opacity = 1; });
-    document.querySelectorAll('.renew-flourish.draw').forEach(function (el){ el.classList.add('is-drawn'); });
-  }
-})();
-</script>
+  <!-- Bibliotecas (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
