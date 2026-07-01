@@ -15,27 +15,8 @@
   <title>Renew Estética Avançada — Blumenau · Terapias, Estética Facial e Saúde</title>
   <meta name="description" content="Clínica multidisciplinar em Blumenau. Terapias integrativas, estética facial avançada (otomodelação) e saúde & emagrecimento. Nota 5,0 no Google. Agende sua avaliação." />
 
-  <!-- Meta Pixel (HUB — 3 pixels: Gleice, Eliane, Tatiana) · só ID, sem token -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1781646389879045'); // Eliane
-    fbq('init', '1520833486405098'); // Gleice
-    fbq('init', '1007882098820770'); // Tatiana
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1781646389879045&ev=PageView&noscript=1" />
-    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1520833486405098&ev=PageView&noscript=1" />
-    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1007882098820770&ev=PageView&noscript=1" />
-  </noscript>
-  <!-- End Meta Pixel -->
+  <!-- Meta Pixel: NÃO no hub. Cada pixel fica só na página dedicada da especialista
+       (eliane.html / gleice.html / tatiana.html). GTM permanece nas 4 páginas. -->
 
   <!-- Fonts: Cormorant (display) + Inter (corpo) — CLAUDE §5 -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -91,7 +72,7 @@
 
   <!-- ============================ HERO ============================ -->
   <section class="hero grain">
-    <div class="hero-bg" style="background-image:url('assets/fachada.jpg')"></div>
+    <div class="hero-bg" style="background-image:url('assets/fachada.jpg'); background-position:center 38%"></div>
     <div class="hero-overlay"></div>
     <div class="hero-glow"></div>
 
@@ -128,7 +109,7 @@
           Estética não é pressa. É <span class="gold-word">cuidado</span> que respeita o seu tempo.
         </h2>
         <p class="lead" style="max-width:60ch; margin-inline:auto; font-size:1.1rem;">
-          A Renew reúne três especialistas — terapias integrativas, estética facial e nutrologia —
+          A Renew reúne três especialistas — terapias integrativas, estética facial e saúde metabólica e emagrecimento —
           sob o mesmo teto. Aqui não existe receita de fast-food estético: cada plano nasce de uma
           avaliação real, conduzida por quem tem registro e responsabilidade pelo que faz.
         </p>
@@ -186,9 +167,9 @@
         <!-- TATIANA -->
         <article class="specialist-card reveal" id="nutrologia">
           <img class="spec-photo spec-photo--tatiana" src="assets/tatiana.jpg"
-               alt="Dra. Tatiana Toledo, Médica Nutróloga da Renew." loading="lazy" />
+               alt="Dra. Tatiana Toledo, médica — saúde metabólica e emagrecimento, na Renew." loading="lazy" />
           <h3 class="spec-name font-display">Dra. Tatiana Toledo</h3>
-          <p class="spec-role">Médica Nutróloga</p>
+          <p class="spec-role">Médica · Saúde metabólica e emagrecimento</p>
           <p class="spec-reg">CRM/SC 25019</p>
           <p class="spec-desc">Emagrecimento de verdade — investigação médica, bioimpedância e plano individual. Fim do efeito sanfona.</p>
           <div class="tags">
